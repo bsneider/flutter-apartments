@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         // is sufficient.
         // in multieprovider the providers cannot be null
         Provider(create: (context) => CatalogModel()),
-        Provider(create: (context) => MockApartmentsModel())
+        ChangeNotifierProvider(create: (context) => MockApartmentsModel())
         ], 
               child: MaterialApp(
                 title: 'Provider Demo',
