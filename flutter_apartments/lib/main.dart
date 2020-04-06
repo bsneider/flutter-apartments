@@ -14,15 +14,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Using MultiProvider is convenient when providing multiple objects.
     return MultiProvider(
-      providers: [], 
-      child: MaterialApp(
-        title: 'Provider Demo',
-        theme: appTheme,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => MyLogin(),
-        },
-      ),
-    );
-  }
+      providers: [        
+        // In this sample app, CatalogModel never changes, so a simple Provider
+        // is sufficient.
+        // in multieprovider the providers cannot be null
+        Provider(create: (context) => CatalogModel()),
+        ], 
+              child: MaterialApp(
+                title: 'Provider Demo',
+                theme: appTheme,
+                initialRoute: '/',
+                routes: {
+                  '/': (context) => MyLogin(),
+                },
+              ),
+            );
+          }
+        }
+        
+        class CatalogModel {
 }
