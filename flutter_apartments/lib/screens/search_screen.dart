@@ -3,7 +3,7 @@ import 'package:flutter_apartments/api/mock_apartments.dart';
 import 'package:flutter_apartments/ui_widgets/search.dart';
 import 'package:flutter_apartments/screens/detail_screen.dart';
 import 'package:flutter_apartments/ui_widgets/property_item.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class SearchScreenState extends State<SearchScreen> {
   }
 
   void _scrollListener() {
-    var props = MockApartments.of(context);
+    var props = Provider.of<MockApartmentsModel>(context);
     if (controller.position.pixels == controller.position.maxScrollExtent) {
       print("Reached end");
       if (!props.isLoadingMore && props.hasMorePages) {
@@ -42,10 +42,9 @@ class SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var model = Provider.of<MockApartmentsModel>(context);
     return Scaffold(
-      body: ScopedModelDescendant<MockApartments>(
-        builder: (context, child, model) {
-          return CustomScrollView(
+      body: CustomScrollView(
             controller: controller,
             slivers: <Widget>[
               SliverAppBar(
@@ -129,9 +128,7 @@ class SearchScreenState extends State<SearchScreen> {
                           ),
                         )
             ],
+          )
           );
-        },
-      ),
-    );
   }
 }

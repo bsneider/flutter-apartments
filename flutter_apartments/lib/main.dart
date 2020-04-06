@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_apartments/api/mock_apartments.dart';
+import 'package:flutter_apartments/screens/search_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'common/theme.dart';
@@ -19,13 +21,15 @@ class MyApp extends StatelessWidget {
         // is sufficient.
         // in multieprovider the providers cannot be null
         Provider(create: (context) => CatalogModel()),
+        Provider(create: (context) => MockApartmentsModel())
         ], 
               child: MaterialApp(
                 title: 'Provider Demo',
                 theme: appTheme,
-                initialRoute: '/',
+                initialRoute: '/search',
                 routes: {
                   '/': (context) => MyLogin(),
+                  '/search': (context) => SearchScreen(),
                 },
               ),
             );

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_apartments/models/nestoria.dart';
 import 'package:flutter_apartments/models/serializers.dart';
 import 'package:http/http.dart' as http;
-import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
 
-class MockApartments extends Model {
+class MockApartmentsModel extends ChangeNotifier{
   List<Property> _properties = [];
   bool _isLoading = false;
   String _statusText = "Start Search";
@@ -174,8 +174,4 @@ class MockApartments extends Model {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('sort', _sort);
   }
-
-  /// Wraps [ScopedModel.of] for this [Model].
-  static MockApartments of(BuildContext context) =>
-      ScopedModel.of<MockApartments>(context);
 }
