@@ -34,7 +34,8 @@ dependencies:
   font_awesome_flutter: ^8.2.0
   url_launcher: ^4.0.1
   shared_preferences: ^0.4.3
-
+  speech_bubble: ^0.0.5
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

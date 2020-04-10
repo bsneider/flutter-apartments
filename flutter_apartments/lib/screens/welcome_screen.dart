@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speech_bubble/speech_bubble.dart';
 import 'package:flutter_apartments/api/mock_apartments.dart';
 import 'package:provider/provider.dart';
 
@@ -12,37 +13,8 @@ class WeclomeScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: Column(
-          children: <Widget>[titleSection, image],
-        )
-        // new Container(
-        //   padding: const EdgeInsets.all(20.0),
-        //   child: new Column(
-        //     children: <Widget>[
-        //       const Text('He\'d have you all unravel at the'),
-        //       const Text('Heed not the rabble'),
-        //       const Text('Sound of screams but the'),
-        //       const Text('Who scream'),
-        //       const Text('Revolution is coming...'),
-        //       const Text('Revolution, they...'),
-        //       Container(
-        //         color: Colors.lightBlue,
-        //         child: Column(
-        //           children: [
-        //             Expanded(
-        //               child: Padding(
-        //                 padding: const EdgeInsets.all(32),
-        //                 child: _AptList(),
-        //               ),
-        //             ),
-        //             Divider(height: 4, color: Colors.black),
-        //             // _CartTotal()
-        //           ],
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        );
+          children: <Widget>[titleSection, speechBubble ,image],
+        ));
   }
 }
 
@@ -69,6 +41,29 @@ class Sample {
   String title;
   Sample(this.title) : assert(title != null);
 }
+
+Widget speechBubble = SpeechBubble(
+  nipLocation: NipLocation.BOTTOM,
+  child: Row(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      Icon(
+        Icons.favorite,
+        color: Colors.white,
+      ),
+      Padding(
+        padding: const EdgeInsets.all(4.0),
+      ),
+      Text(
+        "1",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18.0,
+        ),
+      ),
+    ],
+  ),
+);
 
 const double iconSize = 60;
 Widget image = Row(
