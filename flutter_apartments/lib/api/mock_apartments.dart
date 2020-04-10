@@ -50,7 +50,7 @@ class MockApartmentsModel extends ChangeNotifier {
     String title;
     String summary;
     double price;
-    Property(title, summary, price);
+    Property(this.title, this.summary, this.price);
 
   get listerName => null;
 
