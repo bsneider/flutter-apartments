@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 
 import 'common/theme.dart';
 import 'screens/login.dart';
+import 'screens/welcome_screen.dart';
+
 
 
 void main() {
@@ -27,11 +29,12 @@ class MyApp extends StatelessWidget {
               child: MaterialApp(
                 title: 'Provider Demo',
                 theme: appTheme,
-                initialRoute: '/detail',
+                initialRoute: '/welcome',
                 routes: {
-                  '/': (context) => MyLogin(),
+                  '/': (context) => WeclomeScreen(),
                   '/search': (context) => SearchScreen(),
                   '/detail': (context) => DetailScreen(Provider.of<MockApartmentsModel>(context).properties.first),
+                  '/welcome': (context) => WeclomeScreen()
                 },
               ),
             );
