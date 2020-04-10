@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_apartments/models/nestoria.dart';
+import 'package:flutter_apartments/api/mock_apartments.dart';
 import 'package:flutter_apartments/ui_widgets/text_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -16,17 +16,17 @@ class PropertyItem extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: <Widget>[
-            Container(
-              height: 100,
-              width: 80,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(property.thumbUrl),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-            ),
+            // Container(
+            //   height: 100,
+            //   width: 80,
+            //   decoration: BoxDecoration(
+            //     // image: DecorationImage(
+            //     //   image: NetworkImage(property.thumbUrl),
+            //     //   fit: BoxFit.cover,
+            //     ),
+            //     borderRadius: BorderRadius.all(Radius.circular(5)),
+            //   ),
+            // ),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.only(left: 8.0),
