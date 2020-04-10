@@ -13,7 +13,7 @@ class WeclomeScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: Column(
-          children: <Widget>[titleSection, speechBubble ,image],
+          children: <Widget>[titleSection, image],
         ));
   }
 }
@@ -43,7 +43,7 @@ class Sample {
 }
 
 Widget speechBubble = SpeechBubble(
-  nipLocation: NipLocation.BOTTOM,
+  nipLocation: NipLocation.BOTTOM_LEFT,
   child: Row(
     mainAxisSize: MainAxisSize.min,
     children: <Widget>[
@@ -55,7 +55,27 @@ Widget speechBubble = SpeechBubble(
         padding: const EdgeInsets.all(4.0),
       ),
       Text(
-        "1",
+        "You ready to save some BAH?",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18.0,
+        ),
+      ),
+    ],
+  ),
+);
+
+Widget houseBubble = SpeechBubble(
+  nipLocation: NipLocation.TOP_LEFT,
+  padding: EdgeInsets.all(10.0),
+  child: Row(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.all(4.0),
+      ),
+      Text(
+        "Find a cool house!",
         style: TextStyle(
           color: Colors.white,
           fontSize: 18.0,
@@ -66,7 +86,9 @@ Widget speechBubble = SpeechBubble(
 );
 
 const double iconSize = 60;
-Widget image = Row(
+Widget image = Column(children: <Widget>[speechBubble, equation, houseBubble]);
+
+Widget equation = Row(
   mainAxisAlignment: MainAxisAlignment.center,
   children: <Widget>[
     Icon(
