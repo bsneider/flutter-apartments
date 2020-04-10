@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apartments/api/mock_apartments.dart';
+import 'package:flutter_apartments/screens/detail_screen.dart';
 import 'package:flutter_apartments/screens/search_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -26,10 +27,11 @@ class MyApp extends StatelessWidget {
               child: MaterialApp(
                 title: 'Provider Demo',
                 theme: appTheme,
-                initialRoute: '/search',
+                initialRoute: '/detail',
                 routes: {
                   '/': (context) => MyLogin(),
                   '/search': (context) => SearchScreen(),
+                  '/detail': (context) => DetailScreen(Provider.of<MockApartmentsModel>(context).properties.first),
                 },
               ),
             );

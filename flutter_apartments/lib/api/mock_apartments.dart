@@ -1,12 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_apartments/models/nestoria.dart';
-import 'package:flutter_apartments/models/serializers.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 
-class MockApartmentsModel extends ChangeNotifier{
+class MockApartmentsModel extends ChangeNotifier {
   List<Property> _properties = [];
   bool _isLoading = false;
   String _statusText = "Start Search";
@@ -43,135 +38,35 @@ class MockApartmentsModel extends ChangeNotifier{
     {"name": "Random", "value": "random"},
     {"name": "Distance", "value": "distance"}
   ];
-  String _sort;
 
-  List<Property> get properties => _properties;
-  bool get isLoading => _isLoading;
-  String get statusText => _statusText;
-  int get totalResults => _totalResults;
-  int get totalPages => _totalPages;
-  bool get hasMorePages => _hasMorePages;
-  String get placeName => _placeName;
-  bool get isLoadingMore => _isLoadingMore;
+  List<Property> get properties => [Property("prop1","summary1",10),Property("prop2","summary2",222)];
 
-  List<Map<String, String>> get listingTypeList => _listingTypeList;
-  String get listingType => _listingType;
-  List<Map<String, String>> get countryList => _countryList;
-  String get country => _country;
-  List<Map<String, String>> get sortList => _sortList;
-  String get sort => _sort;
+  bool get hasMorePages => null;
 
-  int getPropertyCount() => _properties.length;
-
-  void initializeValues() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _country = prefs.getString('country') ?? 'uk';
-    _listingType = prefs.getString('listingType') ?? 'rent';
-    _sort = prefs.getString('sort') ?? 'relevancy';
-    notifyListeners();
+  bool get isLoadingMore => null; 
   }
+  
+  class Property {
+    String title;
+    String summary;
+    double price;
+    Property(title, summary, price);
 
-  Future<dynamic> _getData(String place, [int page = 1]) async {
-    String topLevelDomain = _country;
-    if(_country == "br"){
-      topLevelDomain = "com.$_country";
-    }else if(_country == "uk"){
-      topLevelDomain = "co.$_country";
-    }
+  get listerName => null;
 
-    var uri = Uri.https(
-      "api.nestoria.$topLevelDomain",
-      "/api",
-      {
-        "encoding": "json",
-        "action": "search_listings",
-        "has_photo": "1",
-        "page": page.toString(),
-        "number_of_results": "10",
-        "listing_type": _listingType,
-        "sort": _sort,
-        "place_name": place
-      },
-    );
+  String get priceFormatted => "1000";
 
-    var res = await http.get(uri);
+  get bedroomNumber => 50;
 
-    var decodedJson = json.decode(res.body, reviver: (k, v) {
-      if (k == "bathroom_number") {
-        if (v == "") return null;
-        return v;
-      }
-      if (k == "bedroom_number") {
-        if (v == "") return null;
-        return v;
-      }
-      return v;
-    });
+  get bathroomNumber => 3;
 
-    return decodedJson;
-  }
+  String get listerUrl => null;
 
-  Future getProperties(String place, [int page = 1]) async {
-    if (page == 1) {
-      _isLoading = true;
-      _properties.clear();
-    } else {
-      _isLoadingMore = true;
-    }
+  String get imgUrl => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Frick-roll-rick-astley-never-gonna-give-you-up-gif-14189903&psig=AOvVaw2ZmNT58O4yBF_weNB63zxG&ust=1586575855370000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIC57eT13OgCFQAAAAAdAAAAABAD';
 
-    _placeName = place;
+  get carSpaces => 1;
 
-    notifyListeners();
+  get keyWordList => ["fresh","hot"];
 
-    var responseData = await _getData(place, page);
-
-    Nestoria nestoria =
-        serializers.deserializeWith(Nestoria.serializer, responseData);
-
-    nestoria.response.listings.forEach((property) {
-      _properties.add(property);
-    });
-
-    if (nestoria.response.listings.isEmpty) {
-      _statusText = "Nothing Found";
-    }
-
-    _totalResults = nestoria.response.totalResults;
-    _totalPages = nestoria.response.totalPages;
-
-    if (nestoria.response.page == totalPages) {
-      _hasMorePages = false;
-    }
-
-//    print(nestoria.response.page);
-
-    if (page == 1) {
-      _isLoading = false;
-    } else {
-      _isLoadingMore = false;
-    }
-    notifyListeners();
-  }
-
-  void setCountry(String value) async{
-    _country = value;
-    notifyListeners();
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('country', _country);
-  }
-
-  void setListingType(String value) async{
-    _listingType = value;
-    notifyListeners();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('listingType', _listingType);
-  }
-
-  void setSort(String value) async{
-    _sort = value;
-    notifyListeners();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('sort', _sort);
-  }
+  get datasourceName => "null";
 }
