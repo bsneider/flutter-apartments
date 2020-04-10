@@ -70,8 +70,29 @@ class Sample {
   Sample(this.title) : assert(title != null);
 }
 
-Widget image =
-    Expanded(child: Image(image: AssetImage('lib/assets/MilToMilBAH.PNG')));
+const double iconSize = 60;
+Widget image = Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: <Widget>[
+    Icon(
+      Icons.people,
+      size: iconSize,
+    ),
+    Icon(
+      Icons.add,
+      size: iconSize,
+    ),
+    Icon(
+      Icons.home,
+      size: iconSize,
+    ),
+    Icon(Icons.drag_handle, size: iconSize),
+    Text(
+      '\$\$\$',
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: iconSize),
+    ),
+  ],
+);
 
 Widget titleSection = Container(
   padding: const EdgeInsets.all(32),
@@ -96,12 +117,13 @@ Widget titleSection = Container(
             //row and second part is larger factor
             Row(
               children: <Widget>[
+                Container(
+                  child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text('Summary:', style: TextStyle(fontSize: 16))),
+                ),
                 Expanded(
-                    child: Text('Summary:', style: TextStyle(fontSize: 16)),
-                    
-                    ),
-                Expanded(
-                  flex: 3,
+                  flex: 1,
                   child: Text(
                     'We help you find a mil roomate so you can save YOUR BAH. Here\'s a simple math equation for you...',
                     style: TextStyle(
