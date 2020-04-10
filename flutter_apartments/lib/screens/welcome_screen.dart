@@ -18,30 +18,6 @@ class WeclomeScreen extends StatelessWidget {
   }
 }
 
-class _AptList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var itemNameStyle = Theme.of(context).textTheme.headline6;
-    var apts = [Sample("GreenGoblin"), Sample("RedRum")];
-
-    return ListView.builder(
-      itemCount: apts.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        title: Text(
-          apts[index].title,
-          style: itemNameStyle,
-        ),
-      ),
-    );
-  }
-}
-
-class Sample {
-  String title;
-  Sample(this.title) : assert(title != null);
-}
-
 Widget speechBubble = SpeechBubble(
   nipLocation: NipLocation.BOTTOM_LEFT,
   child: Row(
@@ -153,12 +129,6 @@ Widget titleSection = Container(
           ],
         ),
       ),
-      /*3*/
-      Icon(
-        Icons.star,
-        color: Colors.red[500],
-      ),
-      Text('41'),
     ],
   ),
 );
