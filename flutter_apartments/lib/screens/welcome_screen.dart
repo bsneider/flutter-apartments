@@ -11,7 +11,7 @@ class ValuePropImage extends StatelessWidget {
     return Column(children: <Widget>[
       buildSpeechBubble(context),
       buildEquation(fontSize, context),
-      buildHouseSpeechBubble(context)
+      buildHouseSpeechBubble(context, fontSize)
     ]);
   }
 
@@ -42,20 +42,34 @@ class ValuePropImage extends StatelessWidget {
     );
   }
 
-  SpeechBubble buildHouseSpeechBubble(BuildContext context) {
-    return SpeechBubble(
-      nipLocation: NipLocation.TOP_LEFT,
-      padding: EdgeInsets.all(10.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          AutoSizeText(
-            "Find a cool house!",
-            style: Theme.of(context).textTheme.headline1,
-          ),
-        ],
-      ),
-    );
+  Row buildHouseSpeechBubble(BuildContext context, double fontSize) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+      Opacity(
+          opacity: 0.0,
+          child: Row(children: <Widget>[
+            Icon(
+              Icons.people,
+              size: fontSize,
+            ),
+            Icon(
+              Icons.add,
+              size: fontSize,
+            ),
+          ])),
+      SpeechBubble(
+        nipLocation: NipLocation.TOP_LEFT,
+        padding: EdgeInsets.all(10.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            AutoSizeText(
+              "Find a cool house!",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+          ],
+        ),
+      )
+    ]);
   }
 
   SpeechBubble buildSpeechBubble(BuildContext context) {
