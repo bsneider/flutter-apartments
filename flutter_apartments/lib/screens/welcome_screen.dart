@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:speech_bubble/speech_bubble.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import '../ui_widgets/size_config.dart';
 
 class ValuePropImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var iconTheme = Theme.of(context).textTheme.bodyText2;
+    SizeConfig().init(context);
+    var fontSize = SizeConfig.safeBlockHorizontal * 10;
     return Column(children: <Widget>[
       buildSpeechBubble(context),
-      buildEquation(iconTheme),
+      buildEquation(fontSize, context),
       buildHouseSpeechBubble(context)
     ]);
   }
 
-  Row buildEquation(TextStyle iconTheme) {
+  Row buildEquation(double fontSize, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(
           Icons.people,
-          size: iconTheme.fontSize,
+          size: fontSize,
         ),
         Icon(
           Icons.add,
-          size: iconTheme.fontSize,
+          size: fontSize,
         ),
         Icon(
           Icons.home,
-          size: iconTheme.fontSize,
+          size: fontSize,
         ),
-        Icon(Icons.drag_handle, size: iconTheme.fontSize),
+        Icon(Icons.drag_handle, size: fontSize),
         AutoSizeText(
           '\$\$\$',
-          style: iconTheme,
+          style: TextStyle(
+              fontSize: fontSize,
+              color: Theme.of(context).textTheme.bodyText2.color),
         ),
       ],
     );
