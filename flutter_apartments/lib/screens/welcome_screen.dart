@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:speech_bubble/speech_bubble.dart';
-import 'package:flutter_apartments/api/mock_apartments.dart';
-import 'package:provider/provider.dart';
+
+class ValuePropImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[speechBubble, equation, houseBubble]);
+  }
+}
 
 class WeclomeScreen extends StatelessWidget {
   @override
@@ -13,7 +18,7 @@ class WeclomeScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: Column(
-          children: <Widget>[titleSection, image],
+          children: <Widget>[titleSection, ValuePropImage()],
         ));
   }
 }
@@ -62,7 +67,7 @@ Widget houseBubble = SpeechBubble(
 );
 
 const double iconSize = 60;
-Widget image = Column(children: <Widget>[speechBubble, equation, houseBubble]);
+// Widget image = ;
 
 Widget equation = Row(
   mainAxisAlignment: MainAxisAlignment.center,
