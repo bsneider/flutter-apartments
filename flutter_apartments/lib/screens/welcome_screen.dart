@@ -67,27 +67,26 @@ class ValuePropImage extends StatelessWidget {
                       color: Theme.of(context).textTheme.bodyText2.color),
                 ),
                 alignment: Alignment.topLeft)),
-        buildHouseSpeechBubble(context, fontSize),
+        Padding(
+            padding: EdgeInsets.fromLTRB(
+                fontSize * 2.5, pow(fontSize * 170, 0.51), 0, 0),
+            child: Align(
+                child: SpeechBubble(
+                  nipLocation: NipLocation.TOP_LEFT,
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        "Find a cool house!",
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                    ],
+                  ),
+                ),
+                alignment: Alignment.topLeft)),
       ],
     )));
-  }
-
-  Row buildHouseSpeechBubble(BuildContext context, double fontSize) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-      SpeechBubble(
-        nipLocation: NipLocation.TOP_LEFT,
-        padding: EdgeInsets.all(10.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              "Find a cool house!",
-              style: Theme.of(context).textTheme.headline1,
-            ),
-          ],
-        ),
-      )
-    ]);
   }
 
   SpeechBubble buildSpeechBubble(BuildContext context) {
