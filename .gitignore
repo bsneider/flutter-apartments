@@ -7,3 +7,4 @@
 .idea/libraries/Dart_Packages.xml
 .idea/libraries/Dart_SDK.xml
 flutter_apartments/android/app/google-services.json
+flutter_apartments/.vscode/launch.json
