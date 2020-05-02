@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/welcome',
       routes: {
         '/': (context) => WeclomeScreen(),
-        '/welcome': (context) => WeclomeScreen()
+        '/welcome': (context) => WeclomeScreen(),
+        '/aboutyou': (context) => WeclomeScreen(),
+        '/search': (context) => WeclomeScreen(),
+        '/home': (context) => WeclomeScreen()
       },
     );
   }
